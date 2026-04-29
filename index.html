@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manas Apte — AI & Analytics Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0f0e0c;
+  --ink2: #181714;
+  --ink3: #211f1b;
+  --ink4: #2c2a25;
+  --rule: rgba(255,255,255,0.07);
+  --rule2: rgba(255,255,255,0.13);
+  --text: #e2ddd5;
+  --text-mid: #a09890;
+  --text-low: #5c5750;
+  --gold: #4a9eff;
+  --gold-dim: rgba(74,158,255,0.10);
+  --gold-dim2: rgba(74,158,255,0.05);
+  --navy: #1e2d45;
+  --navy-bright: #2a4166;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(74,158,255,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, width 0.25s, height 0.25s, opacity 0.25s;
+}
+body:hover .cursor { opacity: 1; }
+
+/* TOP RULE */
+.top-rule {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+  z-index: 200;
+  opacity: 0.7;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 2px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3rem;
+  background: rgba(15,14,12,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-wordmark {
+  display: flex; flex-direction: column;
+  text-decoration: none;
+}
+.nav-wordmark .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--text); letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.nav-wordmark .role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; color: var(--gold);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  line-height: 1;
+}
+.nav-right { display: flex; align-items: center; gap: 2.5rem; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-mid);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--gold);
+  color: var(--gold); text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--ink); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 3rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 40%, rgba(30,45,69,0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,168,76,0.04) 0%, transparent 60%);
+}
+.hero-lines {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-lines::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 20%; bottom: 0;
+  width: 1px; background: var(--rule);
+}
+.hero-lines::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 40%; bottom: 0;
+  width: 1px; background: var(--rule);
+}
+.hero-main {
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 8rem;
+  position: relative; z-index: 2;
+}
+.hero-label {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.hero-label-line {
+  width: 36px; height: 1px; background: var(--gold); opacity: 0.6;
+}
+.hero-label span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 6.5vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 14ch;
+  margin-bottom: 2.5rem;
+}
+.hero h1 .italic { font-style: italic; color: var(--gold); }
+.hero-sub {
+  max-width: 46ch;
+  color: var(--text-mid);
+  font-size: 15px; line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  background: var(--gold); color: var(--ink);
+  text-decoration: none; font-weight: 500;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--rule2); color: var(--text-mid);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* HERO BOTTOM BAR */
+.hero-bottom {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  position: relative; z-index: 2;
+}
+.hero-stat {
+  padding: 2rem 0;
+  border-right: 1px solid var(--rule);
+}
+.hero-stat:first-child { padding-left: 0; }
+.hero-stat:last-child { border-right: none; padding-right: 0; }
+.stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 600;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat-desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-low);
+  line-height: 1.5;
+}
+
+/* SECTION WRAPPER */
+.section { padding: 6rem 3rem; border-bottom: 1px solid var(--rule); }
+.section-meta {
+  display: flex; align-items: center; gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; color: var(--text-low); letter-spacing: 0.1em;
+}
+.section-rule { flex: 0 0 40px; height: 1px; background: var(--rule2); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400; letter-spacing: -0.01em;
+  color: var(--text);
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* PHILOSOPHY (ABOUT) */
+.philosophy-grid {
+  display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; align-items: start;
+}
+.philosophy-text .lead {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.15rem; line-height: 1.85; font-weight: 400;
+  color: var(--text); margin-bottom: 2rem;
+}
+.philosophy-text .lead em { font-style: italic; color: var(--gold); }
+.philosophy-text p {
+  color: var(--text-mid); font-size: 14px; line-height: 1.85;
+  margin-bottom: 1.1rem; font-weight: 300;
+}
+.pull-quote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  border-left: 2px solid var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-style: italic;
+  color: var(--text-mid); line-height: 1.7;
+}
+
+/* CREDENTIALS PANEL */
+.credentials {
+  background: var(--ink2);
+  border: 1px solid var(--rule);
+  padding: 0;
+}
+.cred-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+}
+.cred-item {
+  display: flex; flex-direction: column;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+}
+.cred-item:last-child { border-bottom: none; }
+.cred-item:hover { background: var(--gold-dim2); }
+.cred-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-low); margin-bottom: 0.35rem;
+}
+.cred-value { font-size: 13px; color: var(--text); font-weight: 300; line-height: 1.45; }
+.cred-sub { font-size: 11px; color: var(--text-mid); margin-top: 0.2rem; }
+
+/* EXPERIENCE */
+.exp-entry {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.exp-entry:first-child { padding-top: 0; }
+.exp-entry:last-child { border-bottom: none; padding-bottom: 0; }
+.exp-left {}
+.exp-period {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--text-low); margin-bottom: 0.5rem;
+}
+.exp-org {
+  font-size: 13px; color: var(--text-mid); margin-bottom: 0.75rem; font-weight: 300;
+}
+.exp-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(74,158,255,0.25);
+  color: var(--gold); background: var(--gold-dim2);
+}
+.exp-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--text); margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.exp-body {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 13px; line-height: 1.85;
+  color: var(--text-mid); margin-bottom: 1.25rem;
+}
+.exp-points { list-style: none; }
+.exp-points li {
+  display: flex; gap: 0.9rem;
+  font-size: 13px; color: var(--text-low);
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--rule);
+  line-height: 1.6;
+}
+.exp-points li::before {
+  content: '—';
+  color: var(--gold); opacity: 0.5;
+  flex-shrink: 0; margin-top: 0.05rem;
+  font-size: 11px;
+}
+
+/* WORK / PROJECTS */
+.work-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+}
+.work-card {
+  padding: 2.25rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.25s;
+  position: relative;
+}
+.work-card:nth-child(2n) { border-right: none; }
+.work-card:nth-last-child(-n+2) { border-bottom: none; }
+.work-card:hover { background: var(--ink2); }
+.work-card.hero-card {
+  grid-column: span 2;
+  background: var(--navy);
+  border-right: none;
+}
+.work-card.hero-card:hover { background: var(--navy-bright); }
+.work-type {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-low); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.work-card.hero-card .work-type { color: rgba(74,158,255,0.7); }
+.work-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.4;
+}
+.work-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 400;
+  color: var(--text); margin-bottom: 0.8rem;
+  letter-spacing: -0.01em; line-height: 1.3;
+}
+.work-card.hero-card h3 { font-size: 1.5rem; }
+.work-card p { font-size: 13px; color: var(--text-mid); line-height: 1.75; font-weight: 300; margin-bottom: 1.5rem; }
+.work-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.07em;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--rule2);
+  color: var(--text-low);
+}
+.work-card.hero-card .chip { border-color: rgba(74,158,255,0.2); color: rgba(74,158,255,0.7); }
+
+/* IMPACT NUMBERS */
+.impact-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+  margin-top: 3rem;
+}
+.impact-cell {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+.impact-cell:last-child { border-right: none; }
+.impact-cell::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold); opacity: 0.15;
+}
+.impact-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 600; color: var(--gold);
+  line-height: 1; margin-bottom: 0.5rem;
+}
+.impact-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--text-low); line-height: 1.5;
+}
+
+/* CAPABILITIES / SKILLS */
+.cap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--rule); }
+.cap-col {
+  border-right: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+.cap-col:last-child { border-right: none; }
+.cap-head {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--ink2);
+}
+.cap-head span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+}
+.cap-item {
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px; color: var(--text-mid); font-weight: 300;
+  transition: color 0.15s, background 0.15s;
+}
+.cap-item:hover { color: var(--text); background: var(--gold-dim2); }
+.cap-item:last-child { border-bottom: none; }
+
+/* CONTACT */
+.contact-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
+.contact-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400; line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text); margin-bottom: 1.5rem;
+}
+.contact-headline em { font-style: italic; color: var(--gold); }
+.contact-body {
+  font-size: 14px; color: var(--text-mid);
+  line-height: 1.85; font-weight: 300;
+  margin-bottom: 2rem; max-width: 42ch;
+}
+.contact-table { width: 100%; border-collapse: collapse; }
+.contact-table tr { border-top: 1px solid var(--rule); }
+.contact-table tr:last-child { border-bottom: 1px solid var(--rule); }
+.contact-table td {
+  padding: 1rem 0;
+  font-size: 13px; vertical-align: middle;
+}
+.contact-table .ct-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-low); width: 100px;
+}
+.contact-table .ct-val { color: var(--text-mid); font-weight: 300; }
+.contact-table .ct-arrow {
+  text-align: right; color: var(--gold); opacity: 0.5;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+}
+.contact-table a { color: inherit; text-decoration: none; }
+.contact-table tr:hover .ct-val { color: var(--gold); }
+.contact-table tr:hover .ct-arrow { opacity: 1; }
+
+/* FOOTER */
+footer {
+  padding: 1.5rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--rule);
+}
+footer span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-low);
+}
+.footer-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px; color: var(--text-low);
+  font-style: italic;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.hero-label  { animation: fadeIn 0.7s ease 0.1s both; }
+.hero h1     { animation: fadeIn 0.8s ease 0.25s both; }
+.hero-sub    { animation: fadeIn 0.7s ease 0.45s both; }
+.hero-actions{ animation: fadeIn 0.7s ease 0.6s both; }
+.hero-bottom { animation: fadeIn 0.6s ease 0.75s both; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .hero h1 { font-size: 2.8rem; }
+  .hero-bottom { grid-template-columns: repeat(2,1fr); }
+  .hero-stat:nth-child(2) { border-right: none; }
+  .philosophy-grid, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-card { border-right: none; border-bottom: 1px solid var(--rule); }
+  .work-card.hero-card { grid-column: 1; }
+  .work-card:last-child { border-bottom: none; }
+  .cap-grid { grid-template-columns: repeat(2,1fr); }
+  .cap-col:nth-child(2) { border-right: none; }
+  .impact-row { grid-template-columns: 1fr; }
+  .impact-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+  .impact-cell:last-child { border-bottom: none; }
+  .exp-entry { grid-template-columns: 1fr; gap: 1rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+<div class="top-rule"></div>
+
+<nav>
+  <a class="nav-wordmark" href="#">
+    <span class="name">Manas Apte</span>
+    <span class="role">AI · Analytics · Strategy</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#capabilities">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:mapte@umd.edu">Hire Me</a>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-main">
+    <div class="hero-label">
+      <span class="hero-label-line"></span>
+      <span>MS Information Systems · UMD Smith · Graduating Dec 2026</span>
+    </div>
+
+    <h1>Problems first.<br/>Technology <span class="italic">second.</span></h1>
+
+    <p class="hero-sub">
+      I sit at the intersection of business strategy and AI engineering.
+      I don't just build models — I identify the right problem, architect the right solution,
+      and deliver it. From requirement gathering to production deployment,
+      I own the full cycle.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="#work">View My Work</a>
+      <a class="btn-ghost" href="#contact">Let's Talk</a>
+      <a class="btn-ghost" href="https://linkedin.com/in/manasapte" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat">
+      <div class="stat-val">2+</div>
+      <div class="stat-desc">Years AI<br/>Engineering</div>
+    </div>
+    <div class="hero-stat" style="padding-left:2rem;">
+      <div class="stat-val">4</div>
+      <div class="stat-desc">Flagship AI<br/>Products Shipped</div>
+    </div>
+    <div class="hero-stat" style="padding-left:2rem;">
+      <div class="stat-val">20+</div>
+      <div class="stat-desc">Enterprise<br/>Clients Impacted</div>
+    </div>
+    <div class="hero-stat" style="padding-left:2rem; border-right: none;">
+      <div class="stat-val">★</div>
+      <div class="stat-desc">Rising Star Award<br/>· AGA Finalist 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section class="section" id="about">
+  <div class="section-meta">
+    <span class="section-num">§ 01</span>
+    <span class="section-rule"></span>
+    <h2 class="section-title">Approach &amp; <em>Philosophy</em></h2>
+  </div>
+  <div class="philosophy-grid">
+    <div class="philosophy-text">
+      <p class="lead">
+        Most people treat AI like a hammer looking for nails.
+        I treat it like a <em>consultant's toolkit</em> — something you pick up only after you've understood the problem deeply.
+      </p>
+      <p>
+        At Actin Technologies, I joined as an intern and became their first AI team member within weeks — not because I knew every framework, but because I could sit across from a client, map their operational pain, and translate it into something buildable. That combination of structured thinking and technical depth is what I bring to every engagement.
+      </p>
+      <p>
+        I built Brainwave — a multi-agent enterprise intelligence platform integrating SAP, Zoho, and Salesforce — from whiteboard to production. I built a GraphRAG maintenance assistant that handled relationship-dense industrial data that naive vector search couldn't touch. Each project started not with a model choice, but with a business question.
+      </p>
+      <div class="pull-quote">
+        "The best AI solutions come from people who understand both the boardroom conversation and the database schema."
+      </div>
+      <p>
+        Now at UMD Smith, I'm formalizing that instinct — studying systems analysis, data strategy, and the organizational dynamics that determine whether an AI initiative succeeds or quietly dies in a sandbox.
+      </p>
+    </div>
+    <div class="credentials">
+      <div class="cred-header">Profile Brief</div>
+      <div class="cred-item">
+        <span class="cred-label">Current</span>
+        <span class="cred-value">MS Information Systems</span>
+        <span class="cred-sub">UMD Smith School of Business · Dec 2026</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-label">Prior Role</span>
+        <span class="cred-value">AI Engineer — Actin Technologies</span>
+        <span class="cred-sub">First AI hire · Full-cycle ownership · 2 years</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-label">Education</span>
+        <span class="cred-value">B.E. Computer Science · 2023</span>
+        <span class="cred-sub">President, ACES — led 100+ person events</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-label">Recognition</span>
+        <span class="cred-value">Rising Star Award</span>
+        <span class="cred-sub">Certificate of Appreciation · Client Engagement</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-label">Competition</span>
+        <span class="cred-value">AGA Datathon 2026 — Finalist</span>
+        <span class="cred-sub">Association of Government Accountants · National</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-label">Target Roles</span>
+        <span class="cred-value">AI/ML · Data Engineering · Analytics Strategy</span>
+        <span class="cred-sub">Open to Summer / Fall 2026 internships</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+<section class="section" id="experience">
+  <div class="section-meta">
+    <span class="section-num">§ 02</span>
+    <span class="section-rule"></span>
+    <h2 class="section-title">Professional <em>Record</em></h2>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-left">
+      <div class="exp-period">Aug 2023 – Jun 2025</div>
+      <div class="exp-org">Actin Technologies</div>
+      <span class="exp-tag">Full-time · AI Team</span>
+    </div>
+    <div>
+      <div class="exp-role">AI Engineer</div>
+      <p class="exp-body">
+        First AI hire at an enterprise software company serving 20+ clients. Owned the complete product lifecycle — requirement gathering, stakeholder alignment, architecture, development, and client-facing delivery — across four production AI systems.
+      </p>
+      <ul class="exp-points">
+        <li>Architected Brainwave: multi-agent enterprise intelligence platform unifying SAP, Zoho CRM, and Salesforce into a ClickHouse data layer</li>
+        <li>Built a GraphRAG Maintenance Assistant enabling natural-language queries over complex industrial knowledge graphs</li>
+        <li>Delivered a Medical Document Intelligence system combining OCR, layout analysis, and LLM extraction for healthcare clients</li>
+        <li>Shipped an Automated Meter Reading pipeline using computer vision for utility industry clients</li>
+        <li>Awarded Rising Star Award and Certificate of Appreciation for exceptional client engagement</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-left">
+      <div class="exp-period">Jan – Aug 2023</div>
+      <div class="exp-org">Actin Technologies</div>
+      <span class="exp-tag">Intern → Offer</span>
+    </div>
+    <div>
+      <div class="exp-role">Project Intern — Data Analytics</div>
+      <p class="exp-body">
+        Joined on a data analytics module engagement. Demonstrated enough depth to be offered a full-time AI engineering role within weeks — becoming the company's first dedicated AI team member.
+      </p>
+      <ul class="exp-points">
+        <li>Built analytics dashboards and pipelines surfacing operational insights for enterprise clients</li>
+        <li>Worked directly with stakeholders to translate business problems into technical specifications</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-entry">
+    <div class="exp-left">
+      <div class="exp-period">Jan 2026 – Dec 2026</div>
+      <div class="exp-org">UMD Smith School</div>
+      <span class="exp-tag">Graduate</span>
+    </div>
+    <div>
+      <div class="exp-role">MS Information Systems</div>
+      <p class="exp-body">
+        Formalizing the link between systems thinking and AI strategy. Coursework spans distributed databases, systems analysis and design, and the organizational dynamics of enterprise technology.
+      </p>
+      <ul class="exp-points">
+        <li>Built Hospital Management System graph database app: Neo4j + Streamlit + PyVis with full CRUD operations</li>
+        <li>Completed advanced MongoDB and relational modeling projects across database engineering coursework</li>
+        <li>AGA Datathon 2026 National Finalist</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WORK ═══════════════════ -->
+<section class="section" id="work">
+  <div class="section-meta">
+    <span class="section-num">§ 03</span>
+    <span class="section-rule"></span>
+    <h2 class="section-title">Selected <em>Work</em></h2>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-card hero-card">
+      <div class="work-type"><span class="work-dot"></span>Flagship · Multi-Agent Platform · Enterprise AI</div>
+      <h3>Brainwave — Enterprise Intelligence Platform</h3>
+      <p>
+        A multi-agent system that gives enterprise teams a single natural-language interface across their entire software stack. Agents handle query routing, cross-system data retrieval, synthesis, and insight delivery. The core challenge was not the model — it was designing the data architecture: unifying SAP ERP, Zoho CRM, and Salesforce into a ClickHouse backend that could respond in milliseconds at enterprise scale.
+      </p>
+      <div class="work-chips">
+        <span class="chip">Multi-Agent Orchestration</span>
+        <span class="chip">ClickHouse</span>
+        <span class="chip">SAP · Zoho · Salesforce</span>
+        <span class="chip">LangChain</span>
+        <span class="chip">Python</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">Enterprise Integration</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-type"><span class="work-dot"></span>Knowledge Graph · RAG</div>
+      <h3>GraphRAG Maintenance Assistant</h3>
+      <p>
+        Industrial equipment maintenance has relationship-dense knowledge that vector search fundamentally can't navigate — failure modes connect to components connect to procedures. GraphRAG lets users query this graph in natural language with retrieval that respects the structure of the domain, not just surface similarity.
+      </p>
+      <div class="work-chips">
+        <span class="chip">GraphRAG</span>
+        <span class="chip">Neo4j</span>
+        <span class="chip">LLM Engineering</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-type"><span class="work-dot"></span>Document Intelligence · Healthcare</div>
+      <h3>Medical Document Intelligence</h3>
+      <p>
+        End-to-end pipeline extracting structured data from unstructured medical documents across healthcare clients — combining OCR, layout analysis, and LLM-based entity extraction to reduce manual processing time and error rates significantly.
+      </p>
+      <div class="work-chips">
+        <span class="chip">OCR + Layout Analysis</span>
+        <span class="chip">LLM Extraction</span>
+        <span class="chip">Document AI</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-type"><span class="work-dot"></span>Computer Vision · Utilities</div>
+      <h3>Automated Meter Reading Pipeline</h3>
+      <p>
+        CV-based pipeline for automatic utility meter reading from field images. Handles varied lighting, meter types, and angles in real production environments — turning a labor-intensive manual process into an automated data pipeline.
+      </p>
+      <div class="work-chips">
+        <span class="chip">Computer Vision</span>
+        <span class="chip">OCR</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Image Pipeline</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-type"><span class="work-dot"></span>Graph DB · Academic</div>
+      <h3>Hospital Management System</h3>
+      <p>
+        Graph database application modeling complex hospital entity relationships — patients, doctors, departments, diagnoses, and treatments. Interactive Streamlit UI with PyVis graph visualization for exploring the knowledge graph dynamically.
+      </p>
+      <div class="work-chips">
+        <span class="chip">Neo4j</span>
+        <span class="chip">Streamlit</span>
+        <span class="chip">PyVis</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-type"><span class="work-dot"></span>Data Science · Competition</div>
+      <h3>AGA Datathon 2026 — Finalist</h3>
+      <p>
+        National finalist in the Association of Government Accountants' data challenge, applying analytics and data science methods to government financial data problems under competitive, time-constrained conditions.
+      </p>
+      <div class="work-chips">
+        <span class="chip">Data Science</span>
+        <span class="chip">Analytics</span>
+        <span class="chip">Gov. Finance Data</span>
+        <span class="chip">Python</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="impact-row">
+    <div class="impact-cell">
+      <div class="impact-num">20+</div>
+      <div class="impact-label">Enterprise clients<br/>served in production</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">4</div>
+      <div class="impact-label">AI products shipped<br/>end-to-end</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">1st</div>
+      <div class="impact-label">AI hire at<br/>Actin Technologies</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CAPABILITIES ═══════════════════ -->
+<section class="section" id="capabilities">
+  <div class="section-meta">
+    <span class="section-num">§ 04</span>
+    <span class="section-rule"></span>
+    <h2 class="section-title">Capabilities &amp; <em>Stack</em></h2>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-col">
+      <div class="cap-head"><span>AI / LLM</span></div>
+      <div class="cap-item">Multi-Agent Systems</div>
+      <div class="cap-item">RAG · GraphRAG</div>
+      <div class="cap-item">LLM Engineering</div>
+      <div class="cap-item">LangChain · LangGraph</div>
+      <div class="cap-item">Prompt Engineering</div>
+      <div class="cap-item">Document AI · OCR</div>
+      <div class="cap-item">Computer Vision</div>
+    </div>
+    <div class="cap-col">
+      <div class="cap-head"><span>Data Engineering</span></div>
+      <div class="cap-item">Python (advanced)</div>
+      <div class="cap-item">SQL · PostgreSQL</div>
+      <div class="cap-item">ClickHouse</div>
+      <div class="cap-item">MongoDB · PyMongo</div>
+      <div class="cap-item">Neo4j (Graph DB)</div>
+      <div class="cap-item">ETL Pipeline Design</div>
+      <div class="cap-item">FastAPI · REST APIs</div>
+    </div>
+    <div class="cap-col">
+      <div class="cap-head"><span>Strategy / Analysis</span></div>
+      <div class="cap-item">Requirements Engineering</div>
+      <div class="cap-item">Stakeholder Management</div>
+      <div class="cap-item">Systems Analysis &amp; Design</div>
+      <div class="cap-item">Business Case Development</div>
+      <div class="cap-item">Process Modeling · DFDs</div>
+      <div class="cap-item">Cost-Benefit Analysis</div>
+      <div class="cap-item">Client Engagement</div>
+    </div>
+    <div class="cap-col">
+      <div class="cap-head"><span>Tools &amp; Cloud</span></div>
+      <div class="cap-item">AWS</div>
+      <div class="cap-item">Git · GitHub</div>
+      <div class="cap-item">Streamlit</div>
+      <div class="cap-item">Agile · SDLC</div>
+      <div class="cap-item">Tableau · Power BI</div>
+      <div class="cap-item">Jupyter · VSCode</div>
+      <div class="cap-item">SAP · Zoho · Salesforce</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section class="section" id="contact">
+  <div class="section-meta">
+    <span class="section-num">§ 05</span>
+    <span class="section-rule"></span>
+    <h2 class="section-title">Get In <em>Touch</em></h2>
+  </div>
+  <div class="contact-layout">
+    <div>
+      <h3 class="contact-headline">Let's work on something that <em>matters.</em></h3>
+      <p class="contact-body">
+        I'm actively looking for Summer / Fall 2026 internships in AI/ML engineering, data engineering, analytics strategy, or BA/consulting roles. If you're working on a real problem and need someone who thinks before they code — let's talk.
+      </p>
+      <a class="btn-primary" href="mailto:mapte@umd.edu">Send a note →</a>
+    </div>
+    <div>
+      <table class="contact-table">
+        <tr>
+          <td class="ct-label">Email</td>
+          <td class="ct-val"><a href="mailto:mapte@umd.edu">mapte@umd.edu</a></td>
+          <td class="ct-arrow">↗</td>
+        </tr>
+        <tr>
+          <td class="ct-label">LinkedIn</td>
+          <td class="ct-val"><a href="https://linkedin.com/in/manasapte" target="_blank">linkedin.com/in/manasapte</a></td>
+          <td class="ct-arrow">↗</td>
+        </tr>
+        <tr>
+          <td class="ct-label">GitHub</td>
+          <td class="ct-val"><a href="https://github.com/manasapte" target="_blank">github.com/manasapte</a></td>
+          <td class="ct-arrow">↗</td>
+        </tr>
+        <tr>
+          <td class="ct-label">Location</td>
+          <td class="ct-val">College Park, Maryland</td>
+          <td class="ct-arrow">—</td>
+        </tr>
+        <tr>
+          <td class="ct-label">Resume</td>
+          <td class="ct-val"><a href="#">Download PDF</a></td>
+          <td class="ct-arrow">↓</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Manas Apte</span>
+  <span class="footer-mark">Problems first. Technology second.</span>
+  <span>Hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  document.querySelectorAll('a, button, .work-card, .cap-item, .cred-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cur.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.width = '48px'; ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(74,158,255,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cur.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = '32px'; ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(74,158,255,0.4)';
+    });
+  });
+</script>
+
+</body>
+</html>
